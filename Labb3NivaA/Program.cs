@@ -25,8 +25,7 @@ namespace Labb3NivaA
                 Console.Clear();
 
                 // Deklarera fältvariablar
-                string titelAntalLoner = "Ange antal löner att mata in: ";
-                string titelLoner = "Ange lön nummer ";
+                string titelAntalLoner = "Ange antal löner att mata in: ";            
                 int braAntalLoner = 0;
 
                 // Metodanrop till metoden ReadInt för att läsa in antal löner. 
@@ -38,7 +37,7 @@ namespace Labb3NivaA
                 if (braAntalLoner >= 2)
                 {
                     // Metodanrop till metoden ProcessSalaries.
-                    ProcessSalaries(titelLoner, braAntalLoner);                   
+                    ProcessSalaries(braAntalLoner);                   
                 }
 
                 else
@@ -87,8 +86,9 @@ namespace Labb3NivaA
         }
 
         // Metod för att göra beräkningar/utskrifter på inmatade löner.
-        private static void ProcessSalaries(string prompt, int antal)
+        private static void ProcessSalaries(int antal)
         {
+            string prompt  = "Ange lön nummer ";
             // Initiera en array som ska innehålla samma antal löner som användaren angav.
             int[] loner = new int[antal];
             
