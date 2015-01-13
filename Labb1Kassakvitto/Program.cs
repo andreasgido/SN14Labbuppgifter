@@ -99,16 +99,13 @@ namespace Labb1Kassakvitto
             int vaxelBelopp = beloppErhallet - summaTotal;            
            
             // Skriv ut kvittot.
-            string kolon = ":";
-            string valuta = "kr";
-
             Console.WriteLine("\nKVITTO");
             Console.WriteLine("-------------------------------");
-            Console.WriteLine("{0} {1, 11} {2, 9} {3}","Totalt", kolon, inmatadSumma, valuta);
-            Console.WriteLine("{0} {1, 3} {2, 9:f2} {3}","Öresavrundning", kolon, restAvrundning, valuta);
-            Console.WriteLine("{0} {1, 7} {2, 9} {3}","Att betala", kolon, summaTotal, valuta);
-            Console.WriteLine("{0} {1, 10} {2, 12:c0}","Kontant", kolon, beloppErhallet);
-            Console.WriteLine("{0} {1, 9} {2, 9} {3}","Tillbaka", kolon, vaxelBelopp, valuta);
+            Console.WriteLine("{0, -17}: {1, 12:c2}", "Totalt", inmatadSumma);
+            Console.WriteLine("{0, -17}: {1, 12:c2}", "Öresavrundning", restAvrundning);
+            Console.WriteLine("{0, -17}: {1, 12:c0}", "Att betala", summaTotal);
+            Console.WriteLine("{0, -17}: {1, 12:c0}", "Kontant", beloppErhallet);
+            Console.WriteLine("{0, -17}: {1, 12:c0}", "Tillbaka", vaxelBelopp);
             Console.WriteLine("-------------------------------\n");
 
             // Växelpengar fördelat på sedlar och mynt.
@@ -138,38 +135,39 @@ namespace Labb1Kassakvitto
             // Skriv ut växeln i de valörer som ska vara med. Övriga visas ej.
             if (antalFemhundralappar > 0)
             {
-                Console.WriteLine("{0, 11} {1, 6} {2}","500-lappar", ":", antalFemhundralappar);
+                Console.WriteLine("{0, -17}: {1}","500-lappar", antalFemhundralappar);
             }
 
             if (antalHundralappar > 0)
             {
-                Console.WriteLine("{0, 11} {1, 6} {2}","100-lappar", ":", antalHundralappar);
+                Console.WriteLine("{0, -17}: {1}", "100-lappar", antalHundralappar);
             }
 
             if (antalFemtiolappar > 0)
             {
-                Console.WriteLine("{0, 11} {1, 6} {2}","50-lappar", ":", antalFemtiolappar);
+                Console.WriteLine("{0, -17}: {1}", "50-lappar", antalFemtiolappar);
             }
 
             if (antalTjugolappar > 0)
             {
-                Console.WriteLine("{0, 11} {1, 6} {2}","20-lappar", ":", antalTjugolappar);
+                Console.WriteLine("{0, -17}: {1}", "20-lappar", antalTjugolappar);
             }
 
             if (antalTiokronor > 0)
             {
-                Console.WriteLine("{0, 11} {1, 6} {2}","10-kronor", ":", antalTiokronor);
+                Console.WriteLine("{0, -17}: {1}", "10-kronor", antalTiokronor);
             }
 
             if (antalFemkronor > 0)
             {
-                Console.WriteLine("{0, 11} {1, 6} {2}","5-kronor", ":", antalFemkronor);
+                Console.WriteLine("{0, -17}: {1}", "5-kronor", antalFemkronor);
             }
 
             if (antalEnkronor > 0)
             {
-                Console.WriteLine("{0, 11} {1, 6} {2}","1-kronor", ":", antalEnkronor);
+                Console.WriteLine("{0, -17}: {1}", "1-kronor", antalEnkronor);
             }
+            Console.WriteLine();
         }
     }
 }
