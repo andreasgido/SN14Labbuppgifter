@@ -24,7 +24,7 @@ namespace Labb3NivaA
                 // Rensa konsolfönstret för inmatning.
                 Console.Clear();
 
-                // Deklarera fältvariablar
+                // Fältvariablar
                 string titelAntalLoner = "Ange antal löner att mata in: ";            
                 int braAntalLoner = 0;
 
@@ -51,7 +51,7 @@ namespace Labb3NivaA
                 // Utskrift där användaren kan välja mellan att göra en ny beräkning eller avsluta programmet.           
                 Console.BackgroundColor = ConsoleColor.Green;
                 Console.ForegroundColor = ConsoleColor.White;
-                Console.WriteLine("\nTryck tangent för att fortsätta -ESC avslutar.");
+                Console.WriteLine("\nTryck tangent för att fortsätta - ESC avslutar.");
                 Console.ResetColor();
 
             } while (Console.ReadKey(true).Key != ConsoleKey.Escape);
