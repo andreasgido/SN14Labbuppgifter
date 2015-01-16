@@ -3,6 +3,7 @@
 //  Design: Andreas Gidö
 //  Datum:      20150105
 //  Reviderad:  20150114
+//  Reviderad:  20150116
 
 using System;
 using System.Collections.Generic;
@@ -19,7 +20,7 @@ namespace Labb1KassakvittoNivaB
             // Titel i konsolfönstret.
             Console.Title = "Växelpengar - nivå B";
 
-            // do-while loop som låter användaren fortsätta mata in nya löner eller avsluta programmet.
+            // do-while loop som låter användaren fortsätta med ny inmatning eller avsluta programmet.
             do
             {
                 // Rensa konsolfönstret.
@@ -28,36 +29,45 @@ namespace Labb1KassakvittoNivaB
                 // Fältvariablar
                 string titelTotalsumma = "Ange totalsumman    : ";
                 string titelErhalletBelopp = "Ange erhållet belopp: ";
-                double braTotalsumma = 0;
-                uint braErhalletBelopp = 0;
-                uint vaxelbelopp = 0;
+                double inmatadDouble = 0;
+                int erhalletVarde = 0;
+                int vaxelbelopp = 0;
+                int braVarde = 0;
 
                 // Metodanrop för att läsa in ett flyttal från användare. 
-                // Metoden returnerar ett validerat flyttal.
-                braTotalsumma = LasPositivDouble(titelTotalsumma);
-
+                // Metoden returnerar ett flyttal.
+                do
+                {
+                    inmatadDouble = LasPositivDouble(titelTotalsumma);
+                    if(inmatadDouble < 1)
+                    {
+                        Console.BackgroundColor = ConsoleColor.Red;
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.WriteLine("Fel! {0} kan inte tolkas som en giltig summa pengar.", inmatadDouble);
+                        Console.ResetColor();
+                    }
+                } while (inmatadDouble < 1);
+               
                 // Öresavrundning
-                braTotalsumma = Math.Round(braTotalsumma, 2); // Avrundar till två decimaler för visningen. 
-                int summaTotal = (int)Math.Round(braTotalsumma);
+                inmatadDouble = Math.Round(inmatadDouble, 2); // Avrundar till två decimaler för visningen. 
+                int avrundadDouble = (int)Math.Round(inmatadDouble);
 
                 // Rest efter öresavrundning.
-                double restAvrundning = summaTotal - braTotalsumma;
+                double restAvrundning = inmatadDouble - avrundadDouble;
                 restAvrundning = Math.Round(restAvrundning, 2);
-
-                // Metodanrop för att läsa in ett heltal från användare. 
-                // Metoden returnerar ett validerat heltal.
-                braErhalletBelopp = LasUInt(titelErhalletBelopp, braTotalsumma);
-        
-                uint totalsumma = (uint)braTotalsumma;
-                vaxelbelopp = braErhalletBelopp - totalsumma;
+              
+                erhalletVarde = LasInt(titelErhalletBelopp, avrundadDouble);
+                                           
+                //int total = (int)braDouble;
+                vaxelbelopp = erhalletVarde - avrundadDouble;
 
                 // Skriv ut kvittot.
                 Console.WriteLine("\nKVITTO");
                 Console.WriteLine("-------------------------------");
-                Console.WriteLine("{0, -17}: {1, 12:c2}", "Totalt", braTotalsumma);
+                Console.WriteLine("{0, -17}: {1, 12:c2}", "Totalt", inmatadDouble);
                 Console.WriteLine("{0, -17}: {1, 12:c2}", "Öresavrundning", restAvrundning);
-                Console.WriteLine("{0, -17}: {1, 12:c0}", "Att betala", braErhalletBelopp);
-                Console.WriteLine("{0, -17}: {1, 12:c0}", "Kontant", braErhalletBelopp);
+                Console.WriteLine("{0, -17}: {1, 12:c0}", "Att betala", avrundadDouble);
+                Console.WriteLine("{0, -17}: {1, 12:c0}", "Kontant", erhalletVarde);
                 Console.WriteLine("{0, -17}: {1, 12:c0}", "Tillbaka", vaxelbelopp);
                 Console.WriteLine("-------------------------------\n");
 
@@ -74,39 +84,19 @@ namespace Labb1KassakvittoNivaB
             } while (Console.ReadKey(true).Key != ConsoleKey.Escape);
         }
 
-        // Metod för att läsa in och validera inmatning av totalsumman från användaren.
-        private static double LasPositivDouble(string titelTotalsumman)
+        // Metod för att läsa in inmatning av totalsumman från användaren.
+        private static double LasPositivDouble(string titel)
         {
             string inmatning = string.Empty;
-            double inmatadSumma = 0;
+            double inmatatVarde = 0;
             while (true)
             {
                 try
                 {
-                    Console.Write(titelTotalsumman);
+                    Console.Write(titel);
                     inmatning = Console.ReadLine();
-                    inmatadSumma = double.Parse(inmatning);
-
-                    // Öresavrundning
-                    inmatadSumma = Math.Round(inmatadSumma, 2); // Avrundar till två decimaler för visningen. 
-                    int summaTotal = (int)Math.Round(inmatadSumma);
-
-                    // Rest efter öresavrundning.
-                    double restAvrundning = summaTotal - inmatadSumma;
-                    restAvrundning = Math.Round(restAvrundning, 2); 
-
-                    // Om inmatad summa är mindre än 1 krona får användaren ett nytt försök.
-                    if (inmatadSumma < 1)
-                    {
-                        Console.BackgroundColor = ConsoleColor.Red;
-                        Console.ForegroundColor = ConsoleColor.White;
-                        Console.WriteLine("Fel! {0} kan inte tolkas som en giltig summa pengar.", inmatadSumma);
-                        Console.ResetColor();                     
-                    }
-                    else
-                    {
-                        return inmatadSumma;
-                    }                   
+                    inmatatVarde = double.Parse(inmatning);
+                    return inmatatVarde;
                 }               
                 catch (Exception)
                 {
@@ -114,25 +104,27 @@ namespace Labb1KassakvittoNivaB
                     Console.ForegroundColor = ConsoleColor.White;
                     Console.WriteLine("Fel! '{0}' kan inte tolkas som en giltig summa pengar.", inmatning);
                     Console.ResetColor();
-                }             
-            }           
+                }
+               
+            }          
         }
-        
-        // Metod för att läsa in och validera inmatning av erållet belopp från användaren.
-        private static uint LasUInt(string titel, double totalsumman)
+
+               
+        // Metod för att läsa in inmatning av erhållet belopp från användaren.
+        private static int LasInt(string titel, int belopp)
         {
             string inmatning = string.Empty;
-            uint beloppErhallet = 0;
+            int beloppErhallet = 0;
             while (true)
             {
                 try
                 {
                     Console.Write(titel);
                     inmatning = Console.ReadLine();
-                    beloppErhallet = uint.Parse(inmatning);
+                    beloppErhallet = int.Parse(inmatning);
 
                     // Om erhållet belopp är mindre än totalsumman får användaren ett nytt försök.
-                    if (beloppErhallet < totalsumman)
+                    if (beloppErhallet < belopp)
                     {
                         Console.BackgroundColor = ConsoleColor.Red;
                         Console.ForegroundColor = ConsoleColor.White;
@@ -155,12 +147,12 @@ namespace Labb1KassakvittoNivaB
         }
         
         // Metod för att dela upp växelsumman i olika valörer.
-        private static void DelaUppIFaktorer(uint beloppVaxel)
+        private static void DelaUppIFaktorer(int beloppVaxel)
         {
-            uint vaxelBelopp = beloppVaxel;
-            uint[] valorer = { 500, 100, 50, 20, 10, 5, 1 };        // En array som innehåller alla valörer.
+            int vaxelBelopp = beloppVaxel;
+            int[] valorer = { 500, 100, 50, 20, 10, 5, 1 };        // En array som innehåller alla valörer.
             string pengar = string.Empty;
-            uint vaxel = 0;
+            int vaxel = 0;
 
             for (int i = 0; i < valorer.Length; i++)
             {

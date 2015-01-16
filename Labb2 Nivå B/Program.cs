@@ -8,103 +8,89 @@ namespace Labb2NivaB
 {
     class Program
     {
-        // Deklarera fältvariabler
-        const byte minBas = 1;
-        const byte maxBas = 79;
-        const string titel = "Ange det udda antalet asterisker (max 79) i triangelns bas: ";
+        // Deklarera fältvariablar.
+        const byte MinBas = 1;
+        const byte MaxBas = 79;
+        const string Titel = "Ange det udda antalet asterisker (max 79) i triangelns bas: ";
         
-        // Mainmetoden
+        // Mainmetoden.
         static void Main(string[] args)
-        {
-
+        {  
             do
             {
+                // Rensa konsolfönstret.
+                Console.Clear();
 
-                // Anropar metoden för inläsning av tal från användaren
-                // Till metoden skickas argumentet med textsträngen till användaren
-                // Metoden ska returnera ett udda heltal som en byte
-                byte basen = ReadOddByte(titel);
+                // Anropar metoden för inläsning av tal från användaren.
+                // Till metoden skickas argumentet med textsträngen till användaren.
+                // Metoden ska returnera ett udda heltal som en byte.
+                byte basen = ReadOddByte(Titel);
 
-                // Anropar metoden för att rita ut triangeln
-                // Till metoden skickas argumentet med det udda talet som
-                // användaren matade in
-                DrawTriangel(basen);
+                // Kontrollera så det returnerade värdet är ett udda värde.
+                if (basen % 2 == 1)
+                {
+                    // Anropar metoden för att rita ut triangeln.
+                    // Till metoden skickas argumentet med det udda talet som
+                    // användaren matade in.
+                    DrawTriangel(basen);
+                }
+                else
+                {
+                    Console.BackgroundColor = ConsoleColor.Red;
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.WriteLine("\nFel! Det inmatade värdet är inte ett udda heltal mellan {0} och {1}", MinBas, MaxBas);
+                    Console.ResetColor();
+                } 
 
+                // Skriv ut val till användaren för att fortsätta inmatningen eller avsluta programmet.
                 Console.BackgroundColor = ConsoleColor.Green;
                 Console.ForegroundColor = ConsoleColor.White;
-                Console.WriteLine("Tryck tangent för att fortsätta -ESC avslutar.");
+                Console.WriteLine("Tryck tangent för att fortsätta - ESC avslutar.");
                 Console.ResetColor();
-
-           
-
-            } while (Console.ReadKey().Key != ConsoleKey.Escape);
-            Console.Clear();
+          
+            } while (Console.ReadKey(true).Key != ConsoleKey.Escape);
         }
 
-        // Metod för att läsa in ett udda heltal från användaren
+        // Metod för att läsa in ett udda heltal från användaren.
         private static byte ReadOddByte(string titel)
         {
-
             byte number = 0;
-
             while (true)
             {
                 try
                 {
-
                     Console.Write(titel);
-                    number = byte.Parse(Console.ReadLine());
-
-                    if (number % 2 == 1)
-                    {
-                        break;
-                    }
-
-                    else
-                    {
-                        Console.BackgroundColor = ConsoleColor.Red;
-                        Console.ForegroundColor = ConsoleColor.White;
-                        Console.WriteLine("\nFel! Det inmatade värdet är inte ett udda heltal mellan {0} och {1}", minBas, maxBas);
-                        Console.ResetColor();
-                    }
-                    
+                    number = byte.Parse(Console.ReadLine());                  
                 }
-
                 catch (Exception)
                 {
                     Console.BackgroundColor = ConsoleColor.Red;
                     Console.ForegroundColor = ConsoleColor.White;
                     Console.WriteLine("\nFel! {0} kan inte tolkas som ett heltal", number);
                     Console.ResetColor();
-                }  
-             
-                
-            }
-                     
-            return number;
-                  
+                }
+                return number;
+            }                                                 
         }
 
-        // Metod för att rita ut en triangel
-        private static void DrawTriangel(byte num)
+        // Metod för att rita ut en triangel.
+        private static void DrawTriangel(byte antalTecken)
         {
-
-            for (int i = 0; i < num; i += 2)
+            // for-loop som håller koll på antalet rader i triangeln.
+            for (int raknare = 0; raknare < antalTecken; raknare += 2)
             {
-
-                for (int space = num - i; space >= 0; space -= 2)
+                // for-loop som skriver ut mellanrum på varje rad som skrivs ut. 
+                for (int raknareMellanrum = antalTecken - raknare; raknareMellanrum >= 0; raknareMellanrum -= 2)
                 {
-                    Console.Write(" ");
+                    Console.Write(" ");     // mellanrum.
                 }
-
-                for (int k = 0; k <= i; k++)
+                // for-loop som skriver ut tecken(asterisker i detta fall) på varje rad.
+                for (int raknareTecken = 0; raknareTecken <= raknare; raknareTecken++)
                 {
-                    Console.Write("*");
+                    Console.Write("*");     // tecken.
                 }
-
                 Console.WriteLine();
             }
-
         }
     }
 }
