@@ -19,6 +19,7 @@ namespace Labb3NivaA
             // Titel på konsolfönstret.
             Console.Title = "Lönerevision Nivå A";
             
+            // do-while loop som låter användaren göra ny inmatning eller avsluta programmet.
             do
             {
                 // Rensa konsolfönstret för inmatning.
@@ -54,8 +55,7 @@ namespace Labb3NivaA
                 Console.WriteLine("\nTryck tangent för att fortsätta - ESC avslutar.");
                 Console.ResetColor();
 
-            } while (Console.ReadKey(true).Key != ConsoleKey.Escape);
-            
+            } while (Console.ReadKey(true).Key != ConsoleKey.Escape);          
         }
 
         // Metod för validering av inmatat värde från användaren.
