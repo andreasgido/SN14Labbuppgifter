@@ -98,7 +98,7 @@ namespace Labb1KassakvittoNivaB
                     inmatatVarde = double.Parse(inmatning);  
                     if (inmatatVarde > 0)
                     {
-                        
+                        return inmatatVarde;  
                     }                 
                 }               
                 catch (Exception)
@@ -108,7 +108,7 @@ namespace Labb1KassakvittoNivaB
                     Console.WriteLine("Fel! '{0}' kan inte tolkas som en giltig summa pengar.", inmatning);
                     Console.ResetColor();
                 }
-                return inmatatVarde;
+                
             }          
         }
              
