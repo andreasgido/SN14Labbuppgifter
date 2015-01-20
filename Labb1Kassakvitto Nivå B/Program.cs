@@ -95,11 +95,19 @@ namespace Labb1KassakvittoNivaB
                 {
                     Console.Write(titel);
                     inmatning = Console.ReadLine();
-                    inmatatVarde = double.Parse(inmatning);  
-                    if (inmatatVarde > 0)
+                    inmatatVarde = double.Parse(inmatning);
+                    if (inmatatVarde <= 0)
                     {
-                        return inmatatVarde;  
-                    }                 
+                        Console.BackgroundColor = ConsoleColor.Red;
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.WriteLine("Fel! '{0}' kan inte tolkas som en giltig summa pengar.", inmatning);
+                        Console.ResetColor();
+                        continue;
+                    }
+                 
+                    return inmatatVarde;
+                    
+
                 }               
                 catch (Exception)
                 {
