@@ -40,7 +40,6 @@ namespace Labb3NivaA
                     // Metodanrop till metoden ProcessSalaries.
                     ProcessSalaries(braAntalLoner);                   
                 }
-
                 else
                 {
                     Console.BackgroundColor = ConsoleColor.Red;
@@ -73,7 +72,6 @@ namespace Labb3NivaA
                     resultat = int.Parse(strTest);
                     break;                                                         
                 }
-
                 catch (Exception)
                 {
                     Console.BackgroundColor = ConsoleColor.Red;
@@ -93,11 +91,11 @@ namespace Labb3NivaA
             int[] loner = new int[antal];
             
             // Läser in lönerna och lägger dom i arrayen.
-            for (int i = 0; i < antal; i++)
-            
-            {    
-                loner[i] = ReadInt(prompt + (i + 1) + ": ");    // ReadInt är samma metod för inläsning av heltal                                       
-            }                                                   // som användes för att ange antal löner.
+            for (int i = 0; i < antal; i++)          
+            {
+                string text = String.Format("{0} {1} :", prompt, (i + 1));
+                loner[i] = ReadInt(text);                   // ReadInt är samma metod för inläsning av heltal                                       
+            }                                               // som användes för att ange antal löner.
 
             Console.WriteLine("\n------------------------------");
 
@@ -126,7 +124,6 @@ namespace Labb3NivaA
             {
                 medianlon = lonerSorted[(antal / 2)];
             }
-
             // Om antal löner är jämna.
             else
             {
@@ -135,20 +132,19 @@ namespace Labb3NivaA
                 medianlon = (tal1 + tal2) / 2;
             }
 
-            // Utskrift av olika uträkningar från inmatade löner.
+            // Utskrift av olika uträkningar från inmatade löner.          
             Console.WriteLine("{0}: {1, 13:C0}", "Medianlön", medianlon);
             Console.WriteLine("{0}: {1, 14:C0}", "Medellön", medellon);
             Console.WriteLine("{0}: {1, 9:c0}", "Lönespridning", spridning);
             Console.Write("------------------------------");
 
-            // Skriv ut orginal-arrayen som inte är sorterad. Radbrytning efter var treje värde.
+            // Skriv ut orginal-arrayen som inte är sorterad. Radbrytning efter var tredje värde.
             for (int i = 0; i < loner.Length; i++)
             {
                 if ( i % 3 != 0)
                 {
                     Console.Write("{0, 8}", loner[i]);
                 }
-
                 else
                 {
                     Console.WriteLine();
