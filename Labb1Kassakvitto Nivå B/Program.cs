@@ -32,21 +32,21 @@ namespace Labb1KassakvittoNivaB
                 double inmatadDouble = 0;
                 int erhalletVarde = 0;
                 int vaxelbelopp = 0;
-                int braVarde = 0;
+                //int braVarde = 0;
 
                 // Metodanrop för att läsa in ett flyttal från användare. 
                 // Metoden returnerar ett flyttal.
                 do
                 {
                     inmatadDouble = LasPositivDouble(titelTotalsumma);
-                    if(inmatadDouble < 1)
+                    if (inmatadDouble < 1 )
                     {
                         Console.BackgroundColor = ConsoleColor.Red;
                         Console.ForegroundColor = ConsoleColor.White;
                         Console.WriteLine("Fel! {0} kan inte tolkas som en giltig summa pengar.", inmatadDouble);
                         Console.ResetColor();
                     }
-                } while (inmatadDouble < 1);
+                } while (inmatadDouble < 1 );
                
                 // Öresavrundning
                 inmatadDouble = Math.Round(inmatadDouble, 2); // Avrundar till två decimaler för visningen. 
@@ -95,8 +95,11 @@ namespace Labb1KassakvittoNivaB
                 {
                     Console.Write(titel);
                     inmatning = Console.ReadLine();
-                    inmatatVarde = double.Parse(inmatning);
-                    return inmatatVarde;
+                    inmatatVarde = double.Parse(inmatning);  
+                    if (inmatatVarde > 0)
+                    {
+                        
+                    }                 
                 }               
                 catch (Exception)
                 {
@@ -105,11 +108,10 @@ namespace Labb1KassakvittoNivaB
                     Console.WriteLine("Fel! '{0}' kan inte tolkas som en giltig summa pengar.", inmatning);
                     Console.ResetColor();
                 }
-               
+                return inmatatVarde;
             }          
         }
-
-               
+             
         // Metod för att läsa in inmatning av erhållet belopp från användaren.
         private static int LasInt(string titel, int belopp)
         {
