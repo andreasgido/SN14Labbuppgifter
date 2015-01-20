@@ -141,7 +141,7 @@ namespace Labb3NivaB
             int median2;
 
             int indexOfArray = source.Length;       // Variabel för att få ut antal index i orginal-arrayen.
-            int[] medianSalary = source;
+            int[] medianSalary = new int[source.Length];
             Array.Copy(source, medianSalary, indexOfArray);
 
             Array.Sort(medianSalary);
