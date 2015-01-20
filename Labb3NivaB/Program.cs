@@ -82,14 +82,14 @@ namespace Labb3NivaB
         // Metod för att läsa in angivet antal löner till en array som seadn returneras till metodanropet.
         private static int[] ReadSalaries(int count)
         {
-            string prompt = "Ange lön nummer ";
             // Initiera en array som ska innehålla samma antal löner som användaren angav.
             int[] salaries = new int[count];
 
             // Läser in lönerna och lägger dom i arrayen.
             for (int i = 0; i < count; i++)
             {
-                salaries[i] = ReadInt(prompt + (i + 1) + ": ");    // ReadInt är samma metod för inläsning av heltal                                       
+                string text = String.Format("{0} {1} :", "Ange lön nummer ", (i + 1));              
+                salaries[i] = ReadInt(text);                       // ReadInt är samma metod för inläsning av heltal                                       
             }                                                      // som användes för att ange antal löner.
             
             return salaries;
