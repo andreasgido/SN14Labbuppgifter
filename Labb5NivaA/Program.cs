@@ -1,4 +1,10 @@
-﻿using System;
+﻿//  Laborationsuppgift 5 - Kylskåp nivå A
+//  Labb5NivaA
+//  Design: Andreas Gidö
+//  Datum:      20150121
+//  Reviderad:  20150122
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,19 +23,16 @@ namespace Labb5NivaA
             Cooler cooler1 = new Cooler();
             ViewTestHeader("Test1.\nTest av standardkonstruktorn.\n");
             Console.WriteLine(cooler1.ToString());
-            //Console.WriteLine();
            
             // Test 2.
             Cooler cooler2 = new Cooler(24.5m , 4);
             ViewTestHeader("Test2.\nTest av konstruktorn med 2 parametrar, (24,5 och 4).\n");
             Console.WriteLine(cooler2.ToString());
-            //Console.WriteLine();
 
             // Test3.
             Cooler cooler3 = new Cooler(19.5m, 4, true, false);
-            ViewTestHeader("Test3.\nTest av konstruktern med 4 parametrar, (19,5 , 4 , True och False).\n");
+            ViewTestHeader("Test3.\nTest av konstruktorn med 4 parametrar, (19,5 , 4 , True och False).\n");
             Console.WriteLine(cooler3.ToString());
-            //Console.WriteLine();
 
             // Test4.
             Cooler cooler4 = new Cooler(5.3m, 4, true, false);
@@ -46,12 +49,13 @@ namespace Labb5NivaA
             ViewTestHeader("Test6.\nTest av påslaget kylskåp och öppen dörr med metoden Tick().\n");
             Run(cooler6, 10);
 
-            // Test7:
+            // Test7.
             Cooler cooler7 = new Cooler(19.7m, 4, false, true);
             ViewTestHeader("Test7.\nTest av avslaget kylskåp och öppen dörr med metoden Tick().\n");
             Run(cooler7, 10);
 
-            // Test8. Gör fler try-catch satser
+            // Test8. Test av egenskaperna.
+            // 2 styck try-catch satser för att fånga 2 olika undantag.
             ViewTestHeader("Test8.\nTest av egenskaperna så att undantag kastas då innertemperatur och måltemperatur tilldelas felaktiga värden\n");
             try
             {               
@@ -77,11 +81,12 @@ namespace Labb5NivaA
                 ViewErrorMessage(ex.Message);
             }
 
-            // Test9. Gör fler try-catch satser
+            // Test9. Test av konstruktorerna.
+            // 2 styck try-catch satser för att fånga 2 olika undantag.
             ViewTestHeader("Test9.\nTest av konstruktorer så att undantag kastas då innertemperatur och måltemperatur tilldelas felaktiga värden\n");
             try
             {
-                Cooler cooler9 = new Cooler(50.0m, 8, true, true);
+                Cooler cooler9 = new Cooler(50.0m, 8, true, true);      // Tilldela konstruktorerna ett felaktigt värde på InsideTemperature
                 ViewTestHeader("Test9.\nTest av konstruktorer så att undantag kastas då innertemperatur och måltemperatur tilldelas felaktiga värden");
                 Run(cooler9, 10);
             }
@@ -93,7 +98,7 @@ namespace Labb5NivaA
 
             try
             {
-                Cooler cooler9 = new Cooler(7.0m, 30, true, true);
+                Cooler cooler9 = new Cooler(7.0m, 30, true, true);      // Tilldela konstruktorerna ett felaktigt värde på TargetTemperature.
                 ViewTestHeader("Test9.\nTest av konstruktorer så att undantag kastas då innertemperatur och måltemperatur tilldelas felaktiga värden");
                 Run(cooler9, 10);
             }
@@ -128,7 +133,6 @@ namespace Labb5NivaA
         // Visar en Test-Header.
         public static void ViewTestHeader(string header)
         {
-            //Console.WriteLine();
             for (int i = 0; i < 50; i++)
             {
                 Console.Write(HorisontalLine);

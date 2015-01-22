@@ -94,17 +94,16 @@ namespace Labb5NivaA
             {
                 InsideTemperature = TargetTemperature;
             }
+            // Kollar om temperaturen inne i kylskåpet går över rumstemperaturen(OutsideTemperature)
+            else if (InsideTemperature + change > OutsideTemperature)
+            {
+                InsideTemperature = OutsideTemperature;
+            }
+            // Annars gör beräkningen.
             else
             {
                 InsideTemperature += change;
             }
-
-            // Kollar om temperaturen inne i kylskåpet går över rumstemperaturen(OutsideTemperature)
-            if (InsideTemperature + change > OutsideTemperature)
-            {
-                InsideTemperature = OutsideTemperature;
-            }
-
         }
 
         // Metoden ToString. Sätter ihop en sträng till metodanropet från Program-klassen där utskrift sker.
@@ -114,6 +113,5 @@ namespace Labb5NivaA
             string open = (IsOpen == true) ? "Öppet" : "Stängt";
             return String.Format("{0} : {1:f1}°C : ({2:f1}°C) - {3}", on, InsideTemperature, TargetTemperature, open);            
         }
-
     }
 }
