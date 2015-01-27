@@ -68,15 +68,22 @@ namespace Labb3NivaB
                     Console.Write(prompt);
                     strTest = Console.ReadLine();
                     result = int.Parse(strTest);
-                    break;
+
+                    if (result <= 0)
+                    {
+                        Console.BackgroundColor = ConsoleColor.Red;
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.WriteLine("Fel! '{0}' kan inte tolkas som ett giltigt värde.", result);
+                        Console.ResetColor();
+                        continue;
+                    }
+                    return result;
                 }
                 catch (Exception)
                 {
                     string messageError = String.Format("Fel! '{0}' kan inte tolkas som ett heltal", strTest);                   
                     ViewMessage(messageError, true);                   
-                }
-
-            return result;
+                }           
         }
 
         // Metod för att läsa in angivet antal löner till en array som seadn returneras till metodanropet.
@@ -101,9 +108,9 @@ namespace Labb3NivaB
 
             // Utskrift av olika uträkningar från inmatade löner.
             Console.Write("\n-------------------------------\n");
-            Console.WriteLine("{0}: {1, 13:C0}", "Medianlön", GetMedian(salaries));
-            Console.WriteLine("{0}: {1, 14:C0}", "Medellön", salaries.Average());
-            Console.WriteLine("{0}: {1, 9:c0}", "Lönespridning", GetDispertion(salaries));
+            Console.WriteLine("{0}: {1, 13:c}", "Medianlön", GetMedian(salaries));
+            Console.WriteLine("{0}: {1, 14:c}", "Medellön", salaries.Average());
+            Console.WriteLine("{0}: {1, 9:c}", "Lönespridning", GetDispertion(salaries));
             Console.Write("-------------------------------");
 
             // Utskrift av orginal-arrayen i den ordning som användaren skrev.
@@ -113,7 +120,6 @@ namespace Labb3NivaB
                 {
                     Console.Write("{0, 8}", salaries[i]);
                 }
-
                 else
                 {
                     Console.WriteLine();
@@ -136,28 +142,33 @@ namespace Labb3NivaB
         // Metod för att räkna ut medianlönen.
         private static int GetMedian(int[] source)
         {
-            int median;
-            int median1;
-            int median2;
+            double median;
+            double median1;
+            double median2;
 
             int indexOfArray = source.Length;       // Variabel för att få ut antal index i orginal-arrayen.
             int[] medianSalary = new int[source.Length];
+
+            // Gör en kopia på orginal-arrayen.
             Array.Copy(source, medianSalary, indexOfArray);
 
+            // Sortera kopian.
             Array.Sort(medianSalary);
+            // Typomvandlar kopian från int till double.
+            double[] doubleMedianSalary = Array.ConvertAll(medianSalary, Convert.ToDouble);
 
-            if (medianSalary.Length% 2 == 1)
+            if (doubleMedianSalary.Length% 2 == 1)
             {
-                median = medianSalary[(indexOfArray / 2)];
+                median = doubleMedianSalary[(indexOfArray / 2)];
             }
             else
             {
-                median1 = medianSalary[(indexOfArray / 2)];
-                median2 = medianSalary[(indexOfArray / 2 -1)];
+                median1 = doubleMedianSalary[(indexOfArray / 2)];
+                median2 = doubleMedianSalary[(indexOfArray / 2 -1)];
                 median = (median1 + median2) / 2;
             }
-
-            return median;
+            int medianAnswer = (int)median;
+            return medianAnswer;
         }
 
         // Metod för att visa två olika meddelanden.
@@ -189,8 +200,7 @@ namespace Labb3NivaB
             if (Console.ReadKey(true).Key == ConsoleKey.Escape)
             {
                 return false;
-            }
-            
+            }           
             return true;
         }
     }
