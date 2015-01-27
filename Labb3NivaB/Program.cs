@@ -16,7 +16,6 @@ namespace Labb3NivaB
     {
         static void Main(string[] args)
         {
-
             Console.Title = "Lönerevision nivå B";
 
             do
@@ -73,7 +72,7 @@ namespace Labb3NivaB
                     {
                         Console.BackgroundColor = ConsoleColor.Red;
                         Console.ForegroundColor = ConsoleColor.White;
-                        Console.WriteLine("Fel! '{0}' kan inte tolkas som ett giltigt värde.", result);
+                        Console.WriteLine("Fel! '{0}' kan inte tolkas som ett giltigt heltal.", result);
                         Console.ResetColor();
                         continue;
                     }
@@ -167,7 +166,7 @@ namespace Labb3NivaB
                 median2 = doubleMedianSalary[(indexOfArray / 2 -1)];
                 median = (median1 + median2) / 2;
             }
-            int medianAnswer = (int)median;
+            int medianAnswer = (int)median;     // Typomvandlar svaret till ett heltal då metoden ska returnera ett heltal.
             return medianAnswer;
         }
 
