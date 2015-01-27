@@ -26,21 +26,8 @@ namespace Labb2NivaB
                 // Metoden ska returnera ett udda heltal som en byte.
                 byte basen = ReadOddByte(Titel);
 
-                // Kontrollera så det returnerade värdet är ett udda värde.
-                if (basen % 2 == 1)
-                {
-                    // Anropar metoden för att rita ut triangeln.
-                    // Till metoden skickas argumentet med det udda talet som
-                    // användaren matade in.
-                    DrawTriangel(basen);
-                }
-                else
-                {
-                    Console.BackgroundColor = ConsoleColor.Red;
-                    Console.ForegroundColor = ConsoleColor.White;
-                    Console.WriteLine("\nFel! Det inmatade värdet är inte ett udda heltal mellan {0} och {1}", MinBas, MaxBas);
-                    Console.ResetColor();
-                } 
+                // Anropar metoden DrawTriangle med argument innehållande det udda talet som användaren matade in.
+                DrawTriangel(basen);
 
                 // Skriv ut val till användaren för att fortsätta inmatningen eller avsluta programmet.
                 Console.BackgroundColor = ConsoleColor.Green;
@@ -55,21 +42,35 @@ namespace Labb2NivaB
         private static byte ReadOddByte(string titel)
         {
             byte number = 0;
+            string strTrest = "";
             while (true)
             {
                 try
                 {
                     Console.Write(titel);
-                    number = byte.Parse(Console.ReadLine());                  
+                    strTrest = Console.ReadLine();
+                    number = byte.Parse(strTrest);
+                  
+                    if (number % 2 == 0 || (number < MinBas && number > MaxBas))
+                    {
+                        Console.BackgroundColor = ConsoleColor.Red;
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.WriteLine("\nFel! Det inmatade värdet är inte ett udda heltal mellan {0} och {1}", MinBas, MaxBas);
+                        Console.ResetColor();
+                        continue;
+                    }
+                    else
+                    {
+                        return number;
+                    }
                 }
                 catch (Exception)
                 {
                     Console.BackgroundColor = ConsoleColor.Red;
                     Console.ForegroundColor = ConsoleColor.White;
-                    Console.WriteLine("\nFel! {0} kan inte tolkas som ett heltal", number);
+                    Console.WriteLine("\nFel! {0} kan inte tolkas som ett heltal", strTrest);
                     Console.ResetColor();
-                }
-                return number;
+                }              
             }                                                 
         }
 
