@@ -24,7 +24,7 @@ namespace Laboration4.A
             Initialize();          
         }
 
-        // Metoden Initialize. Metoden initierar  fältvariablarna.
+        // Metoden Initialize. Metoden initierar fältvariablarna.
         public void Initialize()
         {
             Random randomNumber = new Random();
@@ -44,7 +44,7 @@ namespace Laboration4.A
                 throw new ApplicationException();
             }
 
-            // Kontrollera att det slumpade talet ligger inom rätt intervall.
+            // Kontrollera att det gissade talet ligger inom rätt intervall.
             if (number < 1 || number > 100)
             {
                 throw new ArgumentOutOfRangeException();
@@ -77,8 +77,6 @@ namespace Laboration4.A
                 Console.WriteLine("Det hemliga talet är {0}", _number);
             }
             return false;
-        }
-
-        
+        }       
     }
 }
