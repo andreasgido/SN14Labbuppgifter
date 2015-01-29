@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="Labb6.Solid">
+    <Position X="5.5" Y="0.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>CAAIAAAABACgAABEAAAIAAAAAAAAAAAAAAIACAAAAAA=</HashCode>
+      <FileName>Solid.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Labb6.Cylinder">
+    <Position X="3.5" Y="4.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAIACAAAAAA=</HashCode>
+      <FileName>Cylinder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Labb6.CircularCone">
+    <Position X="8" Y="4.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAIACAAAAAA=</HashCode>
+      <FileName>CircularCone.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Labb6.Program">
+    <Position X="0.5" Y="1" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AIAEAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAQBAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="Labb6.SolidType">
+    <Position X="0.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SolidType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
