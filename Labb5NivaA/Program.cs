@@ -14,7 +14,7 @@ namespace Labb5NivaA
 {
     class Program
     {
-        // Fält
+        // Fält.
         private const string HorisontalLine ="═";
 
         static void Main(string[] args)
@@ -61,7 +61,7 @@ namespace Labb5NivaA
             {               
                 Cooler cooler8 = new Cooler();
                 cooler8.InsideTemperature = 46.0m;      // Tilldela egenskapen InsideTemperature ett felaktigt värde.
-                Run(cooler8, 10);
+                //Run(cooler8, 10);
             }
             catch (Exception ex)
             {
@@ -73,7 +73,7 @@ namespace Labb5NivaA
             {
                 Cooler cooler8 = new Cooler();               
                 cooler8.TargetTemperature = 21;     // Tilldela egenskapen InsideTemperature ett felaktigt värde.
-                Run(cooler8, 10);
+               // Run(cooler8, 10);
             }
             catch (Exception ex)
             {
@@ -88,7 +88,7 @@ namespace Labb5NivaA
             {
                 Cooler cooler9 = new Cooler(50.0m, 8, true, true);      // Tilldela konstruktorerna ett felaktigt värde på InsideTemperature
                 ViewTestHeader("Test9.\nTest av konstruktorer så att undantag kastas då innertemperatur och måltemperatur tilldelas felaktiga värden");
-                Run(cooler9, 10);
+              //  Run(cooler9, 10);
             }
             catch(Exception ex)
             {
@@ -100,7 +100,7 @@ namespace Labb5NivaA
             {
                 Cooler cooler9 = new Cooler(7.0m, 30, true, true);      // Tilldela konstruktorerna ett felaktigt värde på TargetTemperature.
                 ViewTestHeader("Test9.\nTest av konstruktorer så att undantag kastas då innertemperatur och måltemperatur tilldelas felaktiga värden");
-                Run(cooler9, 10);
+              //  Run(cooler9, 10);
             }
             catch (Exception ex)
             {

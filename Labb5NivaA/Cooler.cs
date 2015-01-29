@@ -109,8 +109,8 @@ namespace Labb5NivaA
         // Metoden ToString. Sätter ihop en sträng till metodanropet från Program-klassen där utskrift sker.
         public override string ToString()
         {
-            string on = (IsOn == true) ? "[PÅ]" : "[AV]";
-            string open = (IsOpen == true) ? "Öppet" : "Stängt";
+            string on = IsOn ? "[PÅ]" : "[AV]";
+            string open = IsOpen ? "Öppet" : "Stängt";
             return String.Format("{0} : {1:f1}°C : ({2:f1}°C) - {3}", on, InsideTemperature, TargetTemperature, open);            
         }
     }
