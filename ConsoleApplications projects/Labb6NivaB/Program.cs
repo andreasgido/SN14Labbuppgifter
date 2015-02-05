@@ -8,6 +8,10 @@ namespace Labb6NivaB
 {
     public class Program
     {
+        // Klassmedlem
+
+        static Random randomValue = new Random();
+        
         static void Main(string[] args)
         {
             do
@@ -34,20 +38,17 @@ namespace Labb6NivaB
             Random random = new Random();
             Solid[] arrayOfSolids = new Solid[random.Next(5, 21)];
 
-            const double MinValue = 5;      // Konstant för lägsta slumptal
-            const double MaxValue = 101;    // Konstant för högsta slumptal
-          
             // Fyller på arrayen med det slumpade antalet Solider
             for (int i = 0; i < arrayOfSolids.Length; i++)
             {                
                 switch ((SolidType)random.Next(0, 2))   // Slumpar fram vilken typ av solid som ska fylla på arrayen
                 {                                       // Antingen 0 för CircularCone eller 1 för Cylinder
                     case SolidType.CircularCone:                       
-                        arrayOfSolids[i] = new CircularCone((MinValue + random.NextDouble() * (MaxValue - MinValue)), (MinValue + random.NextDouble() * (MaxValue - MinValue)));
+                        arrayOfSolids[i] = new CircularCone(GenerateRandomDouble(), GenerateRandomDouble());
                         break;
 
                     case SolidType.Cylinder:
-                        arrayOfSolids[i] = new Cylinder((MinValue + random.NextDouble() * (MaxValue - MinValue)), (MinValue + random.NextDouble() * (MaxValue - MinValue)));
+                        arrayOfSolids[i] = new Cylinder(GenerateRandomDouble(), GenerateRandomDouble());
                         break;
                 }
             }
@@ -73,14 +74,14 @@ namespace Labb6NivaB
                 Console.WriteLine(solid.ToString());
             }
         }
-
-        //private static double GenerateRandomDouble()
-        //{
-        //    const double minValue = 5;
-        //    const double maxValue = 101;
-        //    Random random = new Random();
-        //    double randomResult = minValue + random.NextDouble() * (maxValue - minValue);
-        //    return randomResult;
-        //}
+        
+        // Metod för att generera slumpade flyttal.
+        private static double GenerateRandomDouble()
+        {
+            const double minValue = 5;
+            const double maxValue = 101;            
+            double randomResult = minValue + randomValue.NextDouble()  * (maxValue - minValue);
+            return randomResult;
+        }
     }
 }
