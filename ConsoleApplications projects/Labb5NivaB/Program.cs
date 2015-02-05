@@ -34,7 +34,7 @@ namespace Labb5NivaB
 
             // Test 5.
             Cooler cooler5 = new Cooler(5.3m, 4, false, false);
-            ViewTestHeader("Test 4.\nTest av avstängt kylskåp med metoden Tick, med stängd dörr.\n");
+            ViewTestHeader("Test 5.\nTest av avstängt kylskåp med metoden Tick, med stängd dörr.\n");
             Run(cooler5, 10);
 
             // Test 6.
@@ -60,7 +60,7 @@ namespace Labb5NivaB
                 Console.WriteLine();
                 ViewErrorMessage(ex.Message);
             }
-
+           
             TemperatureDisplay tempSensorTarget = new TemperatureDisplay(10.0m, 4, true, true);
             try
             {
