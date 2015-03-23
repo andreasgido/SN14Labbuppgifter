@@ -1,0 +1,32 @@
+﻿@model Labb7A.Models.SecretNumber
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-theme.min.css" rel="stylesheet" />
+    <title>SessionExpired</title>
+</head>
+<body>
+    <div class=" container">
+        <h1>Gissa det hemliga talet.</h1>
+            <div style="width:100%; height:30px; background-color:lightgray; margin-bottom:20px;"></div>
+            <h3>Spelomgången kunde inte fullföljas</h3>
+            <p>Du väntade för länge med att gissa så spelomgången</p>
+            <p>@Html.ActionLink("Börja om", "Index")</p>
+
+
+
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Gissa det hemliga talet.</p>
+        </footer>
+    </div>
+</body>
+</html>

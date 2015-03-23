@@ -1,0 +1,95 @@
+﻿@model Labb7A.Models.SecretNumber
+@using Labb7A.Utilities;
+@using Labb7A.Models
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-theme.min.css" rel="stylesheet" />
+    <link href="~/Content/style.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-2.1.3.js"></script>
+    <title>@ViewBag.Title - Gissa det hemliga talet</title>
+</head>
+<body>
+    <div class=" container">
+        <h1>Gissa det hemliga talet.</h1>
+        <div style="width:100%; height:30px; background-color:lightgray; margin-bottom:50px;"></div>
+
+        @using (Html.BeginForm())
+        {
+                                 
+            <h2>@Model.Count.SwitchCount().ToString()</h2>
+            
+            if (Model.LastGuessedNumber.Number < 1 || Model.LastGuessedNumber.Number > 100)
+            {
+                <p>Gissningen misslyckades, rätta till felet!</p>
+            }
+            
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary()
+
+            <div class="form-group form-inline">                      
+                <label>Gissa det hemliga talet mellan 1 och 100</label>               
+                <input class="form-control" type="text" name="newguess" autofocus disabled="@(!Model.CanMakeGuess)" style="width:50px; height:34px; margin-top:1px; text-align:center;" />
+                <button type="submit" class="btn btn-primary" disabled="@(!Model.CanMakeGuess)">Skicka gissning</button>           
+            </div>
+
+        }
+        
+        <!-- Skriv ut listan -->
+        @if (Model.Count > 0)
+        {
+            <h5>@Model.SwitchOutcome()</h5>
+
+                <div class="pull-left" style="padding:0px; margin:0px; border:solid 1px #000;">
+                    @foreach (var guess in Model.GuessedNumbers)
+                    {                        
+                        int number = Model.GuessedNumbers.IndexOf(guess);
+                        int headerNumber = number + 1;
+                        <div class="pull-left" style="width:40px; height:60px; color:#fff;">
+                            <div style="text-align:center; background-color:#000;">
+                                @headerNumber
+                            </div>
+
+                            <div style="text-align:center; color:#000;">
+                                @switch(guess.Outcome)
+                                {
+                                    case Outcome.Low:
+                                        {
+                                           <div style="background-color:#e8c8eb">&uarr; <br /> @guess.Number</div>
+                                            break;
+                                        }
+                                    case Outcome.High:
+                                        {
+                                            <div style="background-color:#b289d3">&darr; <br /> @guess.Number</div>
+                                            break;
+                                        }
+                                        default:
+                                        break;
+                                }
+                                                                
+                            </div>
+                        </div>
+                    }
+                </div>
+                <div class="clearfix"></div>
+
+                <div style="margin-top:20px;">
+                    @Html.ActionLink("Slumpa nytt tal", "NewRandomNumber")
+                </div>
+        }
+                      
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Gissa det hemliga talet.</p>
+        </footer>
+    </div>   
+</body>
+</html>

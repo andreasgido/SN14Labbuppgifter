@@ -1,0 +1,22 @@
+﻿@model SlumpadeKontakter.ViewModels.ContactViewModel
+
+@{
+    ViewBag.Title = "Ta bort kontakt";
+}
+
+@using(Html.BeginForm())
+{ 
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+    <div class="contianer modal-open">
+        <h2>Radera kontakt!</h2>
+        <br />
+        <h4><strong>Bekräfta borttagning av kontakten:</strong> @Html.DisplayFor(model => model.FirstName) @Html.DisplayFor(model => model.LastName) med epost: @Html.DisplayFor(model => model.Email)</h4>               
+        <br />
+        <h4 style="color:red; display:inline; padding:5px;">Åtgärden kan inte ångras!</h4>
+        <p style=" margin-top:30px;">
+            <button type="submit" class="btn btn-danger">Ta bort kontakten</button> @Html.ActionLink("Avbryt", "Index", null, new { @class = "btn btn-primary" })
+        </p>
+    </div>
+}
+
